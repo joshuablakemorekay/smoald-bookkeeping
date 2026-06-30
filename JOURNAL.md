@@ -70,13 +70,13 @@ Drafted the SKILL.md and the Python script, tested it on a copy (append worked, 
 - Set up a **monthly Google Calendar reminder** (the 10th, with a popup the day before and on the day) to nudge me to run that check.
 - Drafted a report-only "monthly check" mode for my `smoald-expense-tracker` skill — it flags anything I haven't logged yet but never records anything on its own.
 - Confirmed receipts don't need manual downloading — they can be read straight from Gmail and a copy auto-filed to Drive, taking the friction out of logging.
-- Logged my 30 June Claude Pro payment (£18) as a one-off in the Expenses tab.
+- Logged a Claude Pro subscription as a one-off in the Expenses tab, rather than as a fixed recurring line.
 - Removed an entry that turned out not to be a company expense — a reminder to verify every line genuinely belongs to the business before it counts.
 
 **What I learned**
 - **A checklist and a record are two different jobs.** The Recurring Expenses tab is the *plan* (what should go out); the Expenses tab is the *record* (what actually went out). Keeping them separate stops double-counting.
 - **Reminding can be automated; recording must not be.** A list can remind me to check, but it can't prove a payment happened — so recording always comes from a real receipt, never auto-filled from the list. That proof is what HMRC wants.
-- Claude is a manual subscription for me (no auto-renew), so it behaves like a one-off, not a fixed monthly cost. I marked it "ad-hoc" instead of faking an £18/month line that might not happen.
+- Claude is a manual subscription for me (no auto-renew), so it behaves like a one-off, not a fixed monthly cost. I marked it "ad-hoc" instead of faking a fixed monthly line for a charge that might not happen.
 - A bit of HMRC groundwork: pre-trading costs can still count if they were genuinely for the business, and receipts should be kept for around 5 years.
 
 ---

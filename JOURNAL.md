@@ -105,6 +105,8 @@ A spreadsheet on its own is a thin portfolio piece — the real engineering stor
 Fixed the column widths, added the HMRC Notes tab from verified gov.uk rules, built the auto Tax Year column and the per-tax-year totals, anonymised the sheet into a sample template, then wrote the docs and published the GitHub repo.
 
 **What's next**
-The centrepiece I'm building in public here is a Python bank-import automation: read bank transactions, detect recurring payments, and update the sheet automatically — turning the manual monthly check into something hands-off, with the spreadsheet and skill as the foundation.
+- Wire the "pull from Gmail" step into the skill so receipts are fetched from my inbox and filed automatically as part of the routine (reading from Gmail already works — this makes it a standard step rather than a manual ask).
+- Wire the report-only "monthly check" mode fully into the skill so it reconciles the recurring list against logged payments.
+- The centrepiece: a Python bank-import automation that reads bank transactions, detects recurring payments, and updates the sheet automatically — turning the manual monthly check into something hands-off, with the spreadsheet and skill as the foundation.
 
 ---

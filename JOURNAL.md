@@ -49,3 +49,53 @@ Fixed the column widths, added the HMRC Notes tab from verified gov.uk rules, bu
 - A bit of HMRC groundwork: pre-trading costs can still count if they were genuinely for the business, and receipts should be kept for around 5 years.
 
 ---
+
+## 12 June 2026 — Built the `smoald-expense-tracker` skill
+
+**Type:** Milestone
+
+**TL;DR**
+- Turned the manual "log a receipt" routine into a reusable skill, so it happens the same way every time instead of me re-explaining it.
+- Settled on one big decision: Google Drive is the single source of truth — no second local master to drift out of sync.
+
+**What I built**
+A skill made of two parts: a `SKILL.md` (the written instructions that teach Claude the routine) and a small Python script, `add_entry.py`, that does the actual spreadsheet edit. Hand it a receipt and it reads the details, converts everything to £, maps the cost to one of my existing categories, appends a row, recalculates the totals, and files the receipt into `SMOALD receipts` → the correct tax-year subfolder (worked out automatically from the receipt's date — UK tax year, 6 April to 5 April).
+
+**Why I did it this way**
+I kept doing the same fiddly steps by hand for every receipt. A skill writes that routine down once so it runs identically each time — and it bakes in the rules I'd been applying manually: convert to £ and flag conversions as estimates, add a fresh row for each month of a recurring cost, and a duplicate guard so the same payment can't be logged twice.
+
+**What I learned**
+- **Pre-trading expenses** — costs from *before* the business officially started can still count if they were genuinely for the business (within 7 years of trading). That's why my earlier Claude subscriptions are claimable, with a note explaining the reasoning.
+- **"Wholly and exclusively"** — an expense has to be for the business to be claimable; mixed-use things (like one phone used for work and personal) are claimed at the business proportion only.
+- A skill makes Claude *reliable*, not *autonomous* — it still needs me to kick it off with a receipt; it doesn't run on a schedule by itself.
+- The Drive connector can't safely overwrite a binary Excel file, so the honest fallback is the skill handing the file back for a one-drag "replace existing" — better than risking a corrupted tax record.
+
+**How We Did It**
+Drafted the SKILL.md and the Python script, tested it on a copy (append worked, the duplicate guard refused a re-entry, totals recalculated), then packaged it so it works in both Claude.ai and Claude Code.
+
+---
+
+## 7 June 2026 — First real expenses logged, and the £ vs $ lesson
+
+**Type:** Milestone
+
+**TL;DR**
+- Started using the tracker for real by logging the first business costs.
+- Learned the hard rule that shapes everything since: the tracker is in £, but receipts often arrive in $ — so conversions must be flagged, not trusted.
+
+**What I built**
+Logged the first genuine SMOALD costs into the Expenses tab: two domain purchases (Namecheap for `smoald.com`, and a separate DomainAgents payment), Google Workspace, and PeoplePerHour. Each row got a date, category, supplier, payment method, and amount, and the Summary tab totalled them up automatically.
+
+**Why I did it this way**
+A tracker only earns its keep once real numbers go in. Logging these early made the gaps obvious — like the fact that some receipts don't show a £ figure at all.
+
+**What I learned**
+- **Always convert to the tracker's currency (£), and flag any conversion as an estimate** to correct against the bank statement later. The Namecheap receipt only showed $57.02, so the £ figure was an estimate until the real charge landed.
+- **Keep the receipts, not just the spreadsheet.** HMRC can ask for proof, so receipts get saved as PDFs in a dated folder and kept for around five years.
+- **A bank-app screenshot is weaker proof than the supplier's own invoice** — always grab the real receipt where possible.
+- Two payments that look similar can be genuinely different transactions (different payee, card, even domain spelling) — worth checking before assuming.
+
+**How We Did It**
+Read each receipt, converted USD amounts to £ using the rate shown on the receipt, mapped each cost to an existing category, appended the rows, and saved the receipts as PDFs for the records.
+
+---

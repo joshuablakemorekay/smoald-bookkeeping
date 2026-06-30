@@ -81,6 +81,6 @@ I made the tracker do the tax thinking for me: a plain-English HMRC Notes tab, a
 
 ## What's Next
 
-- Add a "pull from Gmail" step so receipts are fetched from my inbox automatically — no downloading.
+- Wire the "pull from Gmail" step into the skill so receipts are fetched from my inbox and filed automatically as part of the routine (reading from Gmail already works — this makes it a standard step, not a manual ask).
 - Wire the "monthly check" mode fully into the skill so it reconciles the recurring list against logged payments.
 - Build a Python bank-import automation that reads my bank transactions and updates the sheet on its own — a Smoald Labs portfolio project.

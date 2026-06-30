@@ -24,7 +24,7 @@ This is the **public, portfolio version** of the project. My live tracker holds 
 
 - **`template/SMOALD_bookkeeping_TEMPLATE.xlsx`** — a ready-to-use copy of the spreadsheet with the same tabs, formulas and HMRC notes, filled with clearly-labelled **sample data** instead of my real numbers. Download it, clear the sample rows, and it's yours.
 - **`README.md`** — this file.
-- **`JOURNAL.md`** — a running dev journal of what I built and learned, newest first.
+- **`JOURNAL.md`** — a running dev journal of what I built and learned, in chronological order.
 
 The receipt-logging Python script and the Claude skill that drive the routine live privately for now. The bank-import automation (see **What's Next**) is the piece I'll be building in public here.
 
@@ -48,11 +48,15 @@ The receipt-logging Python script and the Claude skill that drive the routine li
 
 ## My Journey
 
-*Newest first.*
+*In chronological order (oldest first). The full detail lives in [`JOURNAL.md`](JOURNAL.md).*
 
-### 30 June 2026 — HMRC-aware tracker + public portfolio repo
+### 7 June 2026 — First expenses logged, and the £ vs $ lesson
 
-I made the tracker do the tax thinking for me: a plain-English HMRC Notes tab, an automatic Tax Year column, and a per-tax-year totals breakdown on the Summary tab. Then I turned the project into this public repo with an anonymised template, so none of my real figures are exposed. **Key lesson:** a spreadsheet on its own is a thin portfolio piece — so I scaffolded the repo now and will build the bank-import automation in public, where the real engineering story lives.
+Started logging real costs (domains, Google Workspace, PeoplePerHour) and immediately hit the rule that shapes everything since. **Key lesson:** the tracker is in £ but receipts often arrive in $ — always convert and flag the conversion as an estimate to confirm against the bank statement. And keep the supplier's own receipt as proof, not just a bank-app screenshot.
+
+### 12 June 2026 — Built the `smoald-expense-tracker` skill
+
+Turned the manual routine into a reusable Claude skill — a `SKILL.md` plus a small Python script — that reads a receipt, converts to £, adds a row, recalculates totals, and files the receipt into the right tax-year folder, with a duplicate guard so nothing is logged twice. **Design decisions:** built it as a portable *skill* rather than a hosted tool; made the same package work in both Claude.ai and Claude Code; and aimed for a hands-off setup via Google Drive for Desktop so Drive stays the single source of truth. **Key lesson:** a skill makes Claude *reliable*, not *autonomous* — I still kick it off with a receipt.
 
 ### 30 June 2026 — Recurring Expenses tab + treating Claude as ad-hoc
 
@@ -63,13 +67,17 @@ I made the tracker do the tax thinking for me: a plain-English HMRC Notes tab, a
 - Self-explaining notes in the tab (what it is, what it isn't, the rule, and a step-by-step monthly check).
 - A monthly Google Calendar reminder to run the check.
 - A draft report-only "monthly check" mode for the skill — it flags what's unlogged but never records on its own.
-- Logged my 30 June Claude Pro payment (£18) and removed a Cloudflare entry that wasn't my company's.
+- Confirmed receipts can be read straight from Gmail and auto-filed to Drive — no manual downloading.
 
 **What I learned**
 
 - **A checklist and a record do different jobs** — the recurring tab is the plan, the Expenses tab is the record. Keeping them apart avoids double-counting.
-- Recording should always come from a real receipt, never auto-filled from a list, because the receipt is the proof HMRC wants.
+- **Reminding can be automated; recording must not be** — recording always comes from a real receipt, never auto-filled from a list, because the receipt is the proof HMRC wants.
 - Claude is a manual (non-auto-renewing) subscription for me, so it's logged as an ad-hoc one-off rather than a fixed monthly cost.
+
+### 30 June 2026 — HMRC-aware tracker + public portfolio repo
+
+I made the tracker do the tax thinking for me: a plain-English HMRC Notes tab, an automatic Tax Year column, and a per-tax-year totals breakdown on the Summary tab. Then I turned the project into this public repo with an anonymised template, so none of my real figures are exposed. **Key lesson:** a spreadsheet on its own is a thin portfolio piece — so I scaffolded the repo now and will build the bank-import automation in public, where the real engineering story lives.
 
 ## What's Next
 

@@ -1,0 +1,18 @@
+# Never commit real financial data — only the anonymised template belongs here
+*.xlsx
+!template/*.xlsx
+SMOALD_income_expense_tracker.xlsx
+Recurring_Expenses.xlsx
+
+# Receipts and statements (real documents)
+receipts/
+statements/
+*.pdf
+*.csv
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+~$*
+.vscode/
+.idea/

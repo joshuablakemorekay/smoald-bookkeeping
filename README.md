@@ -1,0 +1,74 @@
+# SMOALD Expense Tracker
+
+A simple bookkeeping system that helps me (a sole trader) record business income and expenses for my UK Self Assessment tax return — without relying on memory.
+
+## What It Does
+
+- Records every business income and expense in **one spreadsheet — the single source of truth**, stored in Google Drive.
+- Keeps a **Recurring Expenses** checklist so regular costs (subscriptions, domain renewals) never get forgotten.
+- Logs new payments straight from a receipt using a custom Claude skill — paste or forward a receipt and the row gets added for me.
+- Converts foreign-currency receipts to GBP and flags them as estimates to confirm against my bank statement.
+- Files receipts into the right tax-year folder automatically (UK tax year runs 6 April–5 April).
+
+## Built With
+
+- **Excel spreadsheet (.xlsx)** — the master tracker, with formulas that total income, expenses, and a rough tax estimate.
+- **Python with openpyxl** — the script that reads a receipt and writes a new row into the spreadsheet. (openpyxl is a library — a ready-made set of code — for editing Excel files.)
+- **Claude skill (a SKILL.md file)** — a set of instructions that teaches Claude to run the whole routine the same way every time.
+- **Google Drive** — stores the master file so it's backed up and reachable anywhere.
+- **Google Calendar** — a monthly reminder to run the expense check.
+
+## What's in this repo
+
+This is the **public, portfolio version** of the project. My live tracker holds real financial figures, so it stays private — what's published here is safe to share:
+
+- **`template/SMOALD_bookkeeping_TEMPLATE.xlsx`** — a ready-to-use copy of the spreadsheet with the same tabs, formulas and HMRC notes, filled with clearly-labelled **sample data** instead of my real numbers. Download it, clear the sample rows, and it's yours.
+- **`README.md`** — this file.
+- **`JOURNAL.md`** — a running dev journal of what I built and learned, newest first.
+
+The receipt-logging Python script and the Claude skill that drive the routine live privately for now. The bank-import automation (see **What's Next**) is the piece I'll be building in public here.
+
+### What's inside the template
+
+| Tab | What it's for |
+| --- | --- |
+| **Summary** | Auto-totals for income, expenses and net profit; a rough tax + NIC estimate; key HMRC dates; and a **per-tax-year breakdown** that fills itself in. |
+| **HMRC Notes** | Plain-English summary of what HMRC requires — reporting threshold, what to keep, how long, and the Making Tax Digital dates. |
+| **Recurring Expenses** | The monthly checklist of repeating costs, with self-explaining notes. |
+| **Income** / **Expenses** | Where actual transactions go. Each has a **Tax Year** column that works out the UK tax year from the date automatically. |
+| **Lists** | The dropdown options for categories and payment methods. |
+
+## How to Run It
+
+1. Open a chat with the `smoald-expense-tracker` skill installed.
+2. Paste, forward, or upload a receipt.
+3. Say "log this to my tracker."
+4. Claude reads the details, adds the row, saves the file back to Drive, and files the receipt in the matching tax-year folder.
+5. Once a month, when the calendar reminder pops up, open the **Recurring Expenses** tab and tick off what's been paid.
+
+## My Journey
+
+*Newest first.*
+
+### 30 June 2026 — Recurring Expenses tab + treating Claude as ad-hoc
+
+**What I built**
+
+- A new **Recurring Expenses** tab — a checklist of costs that repeat, so I stop relying on memory.
+- A **Type** column labelling each cost: Recurring, Variable, or Ad-hoc.
+- Self-explaining notes in the tab (what it is, what it isn't, the rule, and a step-by-step monthly check).
+- A monthly Google Calendar reminder to run the check.
+- A draft report-only "monthly check" mode for the skill — it flags what's unlogged but never records on its own.
+- Logged my 30 June Claude Pro payment (£18) and removed a Cloudflare entry that wasn't my company's.
+
+**What I learned**
+
+- **A checklist and a record do different jobs** — the recurring tab is the plan, the Expenses tab is the record. Keeping them apart avoids double-counting.
+- Recording should always come from a real receipt, never auto-filled from a list, because the receipt is the proof HMRC wants.
+- Claude is a manual (non-auto-renewing) subscription for me, so it's logged as an ad-hoc one-off rather than a fixed monthly cost.
+
+## What's Next
+
+- Add a "pull from Gmail" step so receipts are fetched from my inbox automatically — no downloading.
+- Wire the "monthly check" mode fully into the skill so it reconciles the recurring list against logged payments.
+- Build a Python bank-import automation that reads my bank transactions and updates the sheet on its own — a Smoald Labs portfolio project.

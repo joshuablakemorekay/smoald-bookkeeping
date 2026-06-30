@@ -50,6 +50,10 @@ The receipt-logging Python script and the Claude skill that drive the routine li
 
 *Newest first.*
 
+### 30 June 2026 — HMRC-aware tracker + public portfolio repo
+
+I made the tracker do the tax thinking for me: a plain-English HMRC Notes tab, an automatic Tax Year column, and a per-tax-year totals breakdown on the Summary tab. Then I turned the project into this public repo with an anonymised template, so none of my real figures are exposed. **Key lesson:** a spreadsheet on its own is a thin portfolio piece — so I scaffolded the repo now and will build the bank-import automation in public, where the real engineering story lives.
+
 ### 30 June 2026 — Recurring Expenses tab + treating Claude as ad-hoc
 
 **What I built**

@@ -4,6 +4,31 @@
 
 ---
 
+## 30 June 2026 — HMRC notes, auto tax-year totals, and a portfolio repo
+
+**Type:** Feature / Milestone
+
+**TL;DR**
+- Made the tracker HMRC-aware: an HMRC Notes tab, an automatic Tax Year column, and per-tax-year totals.
+- Published it as a public portfolio repo with an anonymised template — no real financial data.
+
+**What I built**
+Widened cramped columns so text fits, added a plain-English HMRC Notes tab, an auto Tax Year column on Income and Expenses, and a per-tax-year totals table on the Summary tab.
+
+**Why I did it this way**
+I wanted filing-time answers to appear on their own, so the totals and tax years are driven by formulas, not manual typing.
+
+**How it works**
+A SUMIF formula (a built-in spreadsheet function that adds up numbers matching a label) groups each entry by the UK tax year — 6 April to 5 April — worked out from its date.
+
+**What I learned**
+A spreadsheet on its own is a thin portfolio piece — the upcoming bank-import automation is the real engineering story, so I scaffolded the repo now to build it in public.
+
+**How We Did It**
+Fixed the column widths, added the HMRC Notes tab from verified gov.uk rules, built the auto Tax Year column and the per-tax-year totals, anonymised the sheet into a sample template, then wrote the docs and published the GitHub repo.
+
+---
+
 ## 30 June 2026 — Recurring Expenses tab + treating Claude as ad-hoc
 
 **What I built**
